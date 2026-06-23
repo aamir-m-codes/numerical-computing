@@ -35,8 +35,8 @@ def user_input():
             sym_exp = sp.sympify(user_input)
             f = sp.lambdify(x_sym, sym_exp, modules=["math", "sympy"])
 
-            x_l = int(input("Enter lower bound: "))
-            x_r = int(input("Enter upper bound: "))
+            x_l = float(input("Enter lower bound: "))
+            x_r = float(input("Enter upper bound: "))
             no_iter = int(input("Enter iterations (default: 1000): ").strip() or 1000)
             return f, x_l, x_r, no_iter
 
