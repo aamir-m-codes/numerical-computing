@@ -32,7 +32,7 @@ def user_input():
 
         try:
 
-            sym_exp = sp.simplify(user_input)
+            sym_exp = sp.sympify(user_input)
             f = sp.lambdify(x_sym, sym_exp, modules=["math", "sympy"])
 
             x_l = int(input("Enter lower bound: "))
