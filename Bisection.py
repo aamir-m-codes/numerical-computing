@@ -1,7 +1,7 @@
 import math
 
 
-def bisection(f, x_l, x_r, no_iter):
+def bisection(f, x_l, x_r, no_iter, tol=0.1):
     f_l = f(x_l)
     f_r = f(x_r)
     if f_l * f_r > 0:
@@ -9,6 +9,9 @@ def bisection(f, x_l, x_r, no_iter):
         return
 
     for i in range(no_iter):
+        if abs(x_r - x_l) < tol:
+            print(f"Width between intervals are {x_r} - {x_l} = {abs(x_r - x_l)}")
+            return
         x_m = float(x_l + x_r) / 2.0
         f_m = f(x_m)
         if f_m * x_r > 0:
@@ -25,6 +28,6 @@ def f(x):
 
 x_l = -1
 x_r = 10
-no_iter = 5
+no_iter = 18
 
 bisection(f=f, x_l=x_l, x_r=x_r, no_iter=no_iter)
