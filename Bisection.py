@@ -1,6 +1,5 @@
-import math
-import sympy as sp
 import utils.graphs as gr
+import utils.input as inp
 
 
 def bisection(f, x_l, x_r, no_iter, tol=0.1):
@@ -41,26 +40,35 @@ def bisection(f, x_l, x_r, no_iter, tol=0.1):
     return X, Y
 
 
-def user_input():
-    x_sym = sp.symbols("x")
-    while True:
-        user_input = input("Enter function f(x): ")
-
-        try:
-
-            sym_exp = sp.sympify(user_input)
-            f = sp.lambdify(x_sym, sym_exp, modules=["math", "sympy"])
-
-            x_l = float(input("Enter lower bound: "))
-            x_r = float(input("Enter upper bound: "))
-            no_iter = int(input("Enter iterations (default: 1000): ").strip() or 1000)
-            return sym_exp, f, x_l, x_r, no_iter
-
-        except Exception as e:
-            print(f"Invalid mathematical expression")
-
-
 if __name__ == "__main__":
-    sym_exp, f, x_l, x_r, no_iter = user_input()
-    X, Y = bisection(f=f, x_l=x_l, x_r=x_r, no_iter=no_iter)
-    gr.scatter(x=X, y=Y, title=sym_exp, x_label="x", y_label="f(x)")
+    schema = [
+        {
+            "name": "func",
+            "prompt": "Enter function f(x): ",
+            "type": "func",
+        },
+        {
+            "name": "low",
+            "prompt": "Enter lower bound: ",
+            "type": "float",
+        },
+        {
+            "name": "upper",
+            "prompt": "Enter upper bound: ",
+            "type": "float",
+        },
+        {
+            "name": "iters",
+            "prompt": "Enter iterations (default: 100): ",
+            "type": "int",
+            "default": 100,
+        },
+    ]
+    inputs = inp.user_input(schema=schema)
+    X, Y = bisection(
+        f=inputs["func"][1],
+        x_l=inputs["low"],
+        x_r=inputs["upper"],
+        no_iter=inputs["iters"],
+    )
+    gr.scatter(x=X, y=Y, title=inputs["func"][0], x_label="x", y_label="f(x)")
