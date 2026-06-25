@@ -63,4 +63,4 @@ def user_input():
 if __name__ == "__main__":
     sym_exp, f, x_l, x_r, no_iter = user_input()
     X, Y = bisection(f=f, x_l=x_l, x_r=x_r, no_iter=no_iter)
-    gr.plot(x=X, y=Y, title=sym_exp, x_label="x", y_label="f(x)")
+    gr.scatter(x=X, y=Y, title=sym_exp, x_label="x", y_label="f(x)")
