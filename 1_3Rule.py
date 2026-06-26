@@ -1,3 +1,6 @@
+import utils.input as inp
+
+
 def rule1_3(f, a, b, points):
     n = points - 1
     h = float((b - a) / n)
@@ -15,12 +18,31 @@ def rule1_3(f, a, b, points):
     return (h / 3) * total
 
 
-def f(x):
-    return x / (1 + x**2)
-
-
-a = 0
-b = 2
-points = 5
-result = rule1_3(f=f, a=a, b=b, points=points)
-print(f"Answer: {result:.3f}")
+if __name__ == "__main__":
+    schema = [
+        {
+            "name": "func",
+            "prompt": "Enter f(x): ",
+            "type": "func",
+        },
+        {
+            "name": "a",
+            "prompt": "Enter lower limits: ",
+            "type": "float",
+        },
+        {
+            "name": "b",
+            "prompt": "Enter higher limits: ",
+            "type": "float",
+        },
+        {
+            "name": "points",
+            "prompt": "Enter points: ",
+            "type": "int",
+        },
+    ]
+    inputs = inp.user_input(schema=schema)
+    result = rule1_3(
+        f=inputs["func"][1], a=inputs["a"], b=inputs["b"], points=inputs["points"]
+    )
+    print(f"Answer: {result:.3f}")
