@@ -15,7 +15,7 @@ def user_input(schema):
             inp = input(i["prompt"]).strip() or i.get("default") or ""
             inputs[i["name"]] = inp
 
-        elif i["type"] == "func":
+        elif i["type"] == "func" or i["type"] == "diff":
             x_sym = sp.symbols("x")
             while True:
                 inp = input(i["prompt"])
@@ -25,6 +25,13 @@ def user_input(schema):
                     f = sp.lambdify(x_sym, sym_exp, modules=["math", "sympy"])
                     inputs.setdefault(i["name"], []).append(sym_exp)
                     inputs[i["name"]].append(f)
+
+                    if i["type"] == "diff":
+                        der_expr = sp.diff(sym_exp, x_sym)
+                        f_der = sp.lambdify(x_sym, der_expr, modules=["math", "sympy"])
+                        inputs[i["name"]].append(der_expr)
+                        inputs[i["name"]].append(f_der)
+
                     break
                 except Exception as e:
                     print(f"Invalid mathematical expression")
