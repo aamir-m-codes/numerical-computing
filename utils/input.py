@@ -37,3 +37,21 @@ def user_input(schema):
                     print(f"Invalid mathematical expression")
 
     return inputs
+
+
+def AXB_input():
+    A = [[0.0 for _ in range(3)] for _ in range(3)]
+    B = [0.0 for _ in range(3)]
+
+    print("~~~ Input Ax=B ~~~")
+    print("Enter A:-")
+
+    for i in range(3):
+        for j in range(3):
+            A[i][j] = float(input(f"Enter element A[{i}][{j}]: "))
+
+    print("Enter B:-")
+    for i in range(3):
+        B[i] = float(input(f"Enter element B[{i}]: "))
+
+    return A, B
