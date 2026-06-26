@@ -1,4 +1,5 @@
 import numpy as np
+import utils.input as inp
 
 
 def jcobi_method(A, b, x0=None, tol=1e-10, max_iter=100):
@@ -32,11 +33,9 @@ def jcobi_method(A, b, x0=None, tol=1e-10, max_iter=100):
 
 
 if __name__ == "__main__":
-    A = [[10, 3, 1], [3, 10, 2], [1, 2, 10]]
+    A, b = inp.AXB_input()
 
-    b = [19, 29, 35]
-    
-    answer, iters = jcobi_method(A,b)
-    
+    answer, iters = jcobi_method(A, b)
+
     print(f"Answer: {answer}")
     print(f"iter: {iters}")
