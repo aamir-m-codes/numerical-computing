@@ -1,3 +1,6 @@
+import utils.input as inp
+
+
 def trapezoidal(f, a, b, points):
     n = points - 1
     h = float((b - a) / n)
@@ -12,12 +15,32 @@ def trapezoidal(f, a, b, points):
     return (h / 2) * total
 
 
-def f(x):
-    return x / (1 + x**2)
+if __name__ == "__main__":
+    schema = [
+        {
+            "name": "func",
+            "prompt": "Enter f(x): ",
+            "type": "func",
+        },
+        {
+            "name": "a",
+            "prompt": "Enter lower limits: ",
+            "type": "float",
+        },
+        {
+            "name": "b",
+            "prompt": "Enter higher limits: ",
+            "type": "float",
+        },
+        {
+            "name": "points",
+            "prompt": "Enter points: ",
+            "type": "int",
+        },
+    ]
 
-
-a = 0
-b = 2
-points = 5
-result = trapezoidal(f=f, a=a, b=b, points=points)
-print(f"Answer: {result:.3f}")
+    inputs = inp.user_input(schema=schema)
+    result = trapezoidal(
+        f=inputs["func"][1], a=inputs["a"], b=inputs["b"], points=inputs["points"]
+    )
+    print(f"Answer: {result:.3f}")
