@@ -54,4 +54,5 @@ def AXB_input():
     for i in range(3):
         B[i] = float(input(f"Enter element B[{i}]: "))
 
-    return A, B
+    iters = int(input("Enter number of iterations (default 100): ").strip() or 100)
+    return iters, A, B
