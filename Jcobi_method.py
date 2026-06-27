@@ -33,9 +33,9 @@ def jcobi_method(A, b, x0=None, tol=1e-10, max_iter=100):
 
 
 if __name__ == "__main__":
-    A, b = inp.AXB_input()
+    iters, A, b = inp.AXB_input()
 
-    answer, iters = jcobi_method(A, b)
+    answer, iters = jcobi_method(A, b, max_iter=iters)
 
     print(f"Answer: {answer}")
     print(f"iter: {iters}")
