@@ -20,11 +20,6 @@ def bisection(f, x_l, x_r, no_iter, tol=0.1):
         return
 
     for i in range(no_iter):
-        if abs(float(x_r - x_l)) < tol:
-            print(
-                f"Width between intervals are {x_r} - {x_l} = {abs(float(x_r - x_l))}"
-            )
-            return X, Y
         x_m = float(x_l + x_r) / 2.0
         f_m = f(x_m)
         if f_m * x_r > 0:
@@ -36,6 +31,12 @@ def bisection(f, x_l, x_r, no_iter, tol=0.1):
         Y.append(f_m)
 
         print(f"Iteration: {i + 1}\t\tMid: {x_m}\t\tf(mid): {f_m}")
+
+        if abs(float(x_r - x_l)) < tol or f_m == 0.0:
+            print(
+                f"Width between intervals are {x_r} - {x_l} = {abs(float(x_r - x_l))}"
+            )
+            return X, Y
 
     return X, Y
 
