@@ -22,8 +22,9 @@ def bisection(f, x_l, x_r, no_iter, tol=0.1):
     for i in range(no_iter):
         x_m = float(x_l + x_r) / 2.0
         f_m = f(x_m)
-        if f_m * x_r > 0:
+        if f_m * f_l > 0:
             x_r = x_m
+            f_l = f_m
         else:
             x_l = x_m
 
