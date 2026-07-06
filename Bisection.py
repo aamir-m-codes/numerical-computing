@@ -16,8 +16,7 @@ def bisection(f, x_l, x_r, no_iter, tol=0.1):
     Y.append(f_r)
 
     if f_l * f_r > 0:
-        print("Both have same sign, so solution DNE")
-        return
+        raise ValueError(f"Same sign broken: f({x_l})={f_l}, f({x_r})={f_r} ")
 
     for i in range(no_iter):
         x_m = float(x_l + x_r) / 2.0
