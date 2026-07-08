@@ -23,18 +23,23 @@ def regula_falsi(f, a, b, max_iter, tol=0.001):
     Y.append(f_a)
     Y.append(f_b)
 
+    history_matrix = []
+
     for i in range(1, max_iter + 1):
         c = ((a * f_b) - (b * f_a)) / (f_b - f_a)
         f_c = f(c)
+        width = abs(c - prev_c)
 
         X.append(c)
         Y.append(f_c)
 
+        history_matrix.append([i, a, f_a, b, f_b, c, f_c, width])
+
         print(f"Iteration: {i}\t\tf({a}) = {f_a}\t\tf({b}) = {f_b}\t\tf({c}) = {f_c}")
 
-        if abs(f_c) < tol or abs(c - prev_c) < tol or f_c == 0.0:
+        if abs(f_c) < tol or width < tol or f_c == 0.0:
             print(f"Convergence achieved at iteration {i} and Root = {c}")
-            return X, Y
+            return X, Y, history_matrix
 
         if f_a * f_c > 0:
             a = c
@@ -45,7 +50,7 @@ def regula_falsi(f, a, b, max_iter, tol=0.001):
 
         prev_c = c
 
-    return X, Y
+    return X, Y, history_matrix
 
 
 if __name__ == "__main__":
@@ -74,7 +79,7 @@ if __name__ == "__main__":
     ]
 
     inputs = inp.user_input(schema=schema)
-    X, Y = regula_falsi(
+    X, Y, history_matrix = regula_falsi(
         f=inputs["func"][1],
         a=inputs["low"],
         b=inputs["upper"],
