@@ -28,7 +28,7 @@ def regula_falsi(f, a, b, max_iter, tol=0.001):
     for i in range(1, max_iter + 1):
         c = ((a * f_b) - (b * f_a)) / (f_b - f_a)
         f_c = f(c)
-        width = abs(c - prev_c)
+        width = abs(c - prev_c) if i > 1 else float("inf")
 
         X.append(c)
         Y.append(f_c)
