@@ -13,17 +13,27 @@ def regula_falsi(f, a, b, max_iter, tol=0.1):
     if f_a * f_b > 0:
         raise ValueError(f"Same sign broken: f({a})={f_a}, f({b})={f_b}")
 
+    X = []
+    Y = []
     prev_c = a
+
+    X.append(a)
+    X.append(b)
+    Y.append(f_a)
+    Y.append(f_b)
 
     for i in range(1, max_iter + 1):
         c = ((a * f_b) - (b * f_a)) / (f_b - f_a)
         f_c = f(c)
 
+        X.append(c)
+        Y.append(f_c)
+
         print(f"Iteration: {i}\t\tf({a}) = {f_a}\t\tf({b}) = {f_b}\t\tf({c}) = {f_c}")
 
         if abs(f_c) < tol or abs(c - prev_c) < tol or f_c == 0.0:
             print(f"Convergence achieved at iteration {i} and Root = {c}")
-            return
+            return X, Y
 
         if f_a * f_c > 0:
             a = c
@@ -33,6 +43,8 @@ def regula_falsi(f, a, b, max_iter, tol=0.1):
             f_b = f_c
 
         prev_c = c
+
+    return X, Y
 
 
 if __name__ == "__main__":
@@ -61,7 +73,7 @@ if __name__ == "__main__":
     ]
 
     inputs = inp.user_input(schema=schema)
-    regula_falsi(
+    X, Y = regula_falsi(
         f=inputs["func"][1],
         a=inputs["low"],
         b=inputs["upper"],
