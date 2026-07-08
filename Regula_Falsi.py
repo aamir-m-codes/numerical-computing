@@ -4,9 +4,10 @@ but with some geometry intelligence
 """
 
 import utils.input as inp
+import utils.graphs as gr
 
 
-def regula_falsi(f, a, b, max_iter, tol=0.1):
+def regula_falsi(f, a, b, max_iter, tol=0.001):
     f_a = f(a)
     f_b = f(b)
 
@@ -79,3 +80,4 @@ if __name__ == "__main__":
         b=inputs["upper"],
         max_iter=inputs["iters"],
     )
+    gr.scatter(x=X, y=Y, title=inputs["func"][0], x_label="x", y_label="f(x)")
