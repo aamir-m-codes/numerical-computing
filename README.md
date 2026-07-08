@@ -2,6 +2,7 @@
 
 ### Methods
     Bisection
+    Regula Falsi
     Newton Raphson
     Trapezoidal
     1/3 Simpson
