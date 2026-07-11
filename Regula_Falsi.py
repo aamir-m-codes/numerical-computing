@@ -37,7 +37,7 @@ def regula_falsi(f, a, b, max_iter, tol=0.001):
 
         print(f"Iteration: {i}\t\tf({a}) = {f_a}\t\tf({b}) = {f_b}\t\tf({c}) = {f_c}")
 
-        if abs(f_c) < tol or width < tol or f_c == 0.0:
+        if abs(f_c) < tol or f_c == 0.0:
             print(f"Convergence achieved at iteration {i} and Root = {c}")
             return X, Y, history_matrix
 
