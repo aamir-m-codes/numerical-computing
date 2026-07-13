@@ -14,3 +14,6 @@
   * #### Bracketing Methods
     * Bisection
     * Regula Falsi
+
+  * #### Opening Methods
+    * Newton Raphson
