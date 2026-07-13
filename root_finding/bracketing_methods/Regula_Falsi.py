@@ -3,6 +3,9 @@ Regula Falsi (False Position) method is the bracketing (bisection) method
 but with some geometry intelligence
 """
 
+import os, sys
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 import utils.input as inp
 import utils.graphs as gr
 
