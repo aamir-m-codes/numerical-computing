@@ -1,6 +1,6 @@
 # Numerical Computing With Python
 
-### Methods
+## Methods
     Bisection
     Regula Falsi
     Newton Raphson
@@ -8,3 +8,9 @@
     1/3 Simpson
     3/8 Simpson
     Jcobi Iteration Method
+
+## Methods Hierarchy
+* ### Root Finding
+  * #### Bracketing Methods
+    * Bisection
+    * Regula Falsi
